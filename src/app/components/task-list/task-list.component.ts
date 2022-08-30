@@ -1,4 +1,3 @@
-import { ThrowStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { CrudService } from "src/app/services/crud.service";
 
@@ -11,17 +10,18 @@ export class TaskListComponent implements OnInit {
   constructor(private crudService: CrudService) {}
 
   tasks: any;
-  currentTask = null;
+  currentTask = {
+    id: 0,
+    title: "",
+    description: "",
+    completed: false,
+  };
   currentIndex = -1;
   title = "";
 
-  task = {
-    title: "",
-    description: "",
-  };
-
   ngOnInit() {
     this.retrieveTasks();
+    console.log(this.currentTask);
   }
 
   onClose() {
@@ -42,14 +42,49 @@ export class TaskListComponent implements OnInit {
 
   refreshList() {
     this.retrieveTasks();
-    this.currentTask = null;
+    this.currentTask = {
+      id: 0,
+      title: "",
+      description: "",
+      completed: false,
+    };
     this.currentIndex = -1;
   }
 
   setActiveTask(task, index) {
-    this.currentTask = task;
+    this.currentTask = {
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      completed: task.completed,
+    };
     this.currentIndex = index;
+    console.log(this.currentTask);
   }
 
-  deleteTask(task) {}
+  deleteTask(id) {
+    id = this.currentTask.id;
+    console.log(id);
+    if (confirm("Isto irá deletar a tarefa, você já completou??")) {
+      this.crudService.delete(id).subscribe((response) => {
+        console.log(response);
+        this.retrieveTasks();
+        this.refreshList();
+      });
+    }
+  }
+
+  editTask(id) {
+    const data = {
+      title: this.currentTask.title,
+      description: this.currentTask.description,
+    };
+
+    id = this.currentTask.id;
+    this.crudService.update(id, data).subscribe((response) => {
+      console.log(response);
+      this.retrieveTasks();
+      this.refreshList();
+    });
+  }
 }

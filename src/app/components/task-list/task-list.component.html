@@ -13,7 +13,7 @@
     </ul>
   </div>
   <div class="col-md-6">
-    <div *ngIf="currentTask">
+    <div *ngIf="currentTask.id !== 0">
       <h4>Tarefa</h4>
       <div>
         <label><strong>Título:</strong></label> {{ currentTask.title }}
@@ -35,10 +35,12 @@
         >
           Editar
         </button>
-        <button type="button" class="btn btn-danger">Deletar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteTask()">
+          Deletar
+        </button>
       </div>
     </div>
-    <div *ngIf="!currentTask">
+    <div *ngIf="currentTask.id === 0">
       <br />
       <p>Clique numa tarefa para ver detalhes...</p>
     </div>
@@ -69,16 +71,28 @@
         <form action="PUT">
           <div class="mb3">
             <label class="form-label">Título</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="currentTask.title"
+              name="title"
+            />
           </div>
           <div class="mb3">
             <label class="form-label">Descrição</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="currentTask.description"
+              name="description"
+            />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary" (click)="editTask()">
+          Salvar
+        </button>
       </div>
     </div>
   </div>
