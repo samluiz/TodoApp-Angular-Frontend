@@ -26,13 +26,60 @@
         <label><strong>Status:</strong></label>
         {{ currentTask.completed ? "Completed" : "Em andamento" }}
       </div>
-      <a class="badge badge-warning" href="/Tasks/{{ currentTask.id }}">
-        Editar
-      </a>
+      <div class="btn-group mt-3" role="group">
+        <button
+          type="button"
+          class="btn btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger">Deletar</button>
+      </div>
     </div>
     <div *ngIf="!currentTask">
       <br />
       <p>Clique numa tarefa para ver detalhes...</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar tarefa</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="PUT">
+          <div class="mb3">
+            <label class="form-label">Título</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="mb3">
+            <label class="form-label">Descrição</label>
+            <input type="text" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
     </div>
   </div>
 </div>

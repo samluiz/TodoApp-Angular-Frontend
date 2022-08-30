@@ -19,6 +19,10 @@ export class TaskListComponent implements OnInit {
     this.retrieveTasks();
   }
 
+  onClose() {
+    this.retrieveTasks();
+  }
+
   retrieveTasks() {
     this.crudService.getAll().subscribe(
       (data) => {
