@@ -64,7 +64,6 @@ export class TaskListComponent implements OnInit {
 
   deleteTask(id) {
     id = this.currentTask.id;
-    console.log(id);
     if (!this.currentTask.complete) {
       if (confirm("Isto irá deletar a tarefa, você já completou??")) {
         this.crudService.delete(id).subscribe((response) => {
