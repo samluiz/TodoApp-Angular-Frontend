@@ -14,14 +14,14 @@ export class TaskListComponent implements OnInit {
     id: 0,
     title: "",
     description: "",
-    completed: false,
+    complete: false,
+    created: 0,
   };
   currentIndex = -1;
   title = "";
 
   ngOnInit() {
     this.retrieveTasks();
-    console.log(this.currentTask);
   }
 
   onClose() {
@@ -32,7 +32,6 @@ export class TaskListComponent implements OnInit {
     this.crudService.getAll().subscribe(
       (data) => {
         this.tasks = data;
-        console.log(data);
       },
       (error) => {
         console.log(error);
@@ -46,7 +45,8 @@ export class TaskListComponent implements OnInit {
       id: 0,
       title: "",
       description: "",
-      completed: false,
+      complete: false,
+      created: 0,
     };
     this.currentIndex = -1;
   }
@@ -56,18 +56,24 @@ export class TaskListComponent implements OnInit {
       id: task.id,
       title: task.title,
       description: task.description,
-      completed: task.completed,
+      complete: task.complete,
+      created: task.created,
     };
     this.currentIndex = index;
-    console.log(this.currentTask);
   }
 
   deleteTask(id) {
     id = this.currentTask.id;
     console.log(id);
-    if (confirm("Isto irá deletar a tarefa, você já completou??")) {
+    if (!this.currentTask.complete) {
+      if (confirm("Isto irá deletar a tarefa, você já completou??")) {
+        this.crudService.delete(id).subscribe((response) => {
+          this.retrieveTasks();
+          this.refreshList();
+        });
+      }
+    } else {
       this.crudService.delete(id).subscribe((response) => {
-        console.log(response);
         this.retrieveTasks();
         this.refreshList();
       });
@@ -78,13 +84,33 @@ export class TaskListComponent implements OnInit {
     const data = {
       title: this.currentTask.title,
       description: this.currentTask.description,
+      complete: false,
     };
 
     id = this.currentTask.id;
     this.crudService.update(id, data).subscribe((response) => {
-      console.log(response);
       this.retrieveTasks();
       this.refreshList();
     });
+  }
+
+  completeTask(id) {
+    const data = {
+      title: this.currentTask.title,
+      description: this.currentTask.description,
+      complete: true,
+    };
+
+    id = this.currentTask.id;
+
+    this.crudService.update(id, data).subscribe(
+      (response) => {
+        this.retrieveTasks();
+        this.refreshList();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

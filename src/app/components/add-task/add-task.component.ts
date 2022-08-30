@@ -26,7 +26,6 @@ export class AddTaskComponent implements OnInit {
 
     this.crudService.create(data).subscribe(
       (response) => {
-        console.log(response);
         this.submitted = true;
       },
       (error) => {

@@ -7,6 +7,7 @@
         *ngFor="let task of tasks; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveTask(task, i)"
+        [ngClass]="task.complete ? ' finished ' : null"
       >
         {{ task.title }}
       </li>
@@ -24,9 +25,12 @@
       </div>
       <div>
         <label><strong>Status:</strong></label>
-        {{ currentTask.completed ? "Completed" : "Em andamento" }}
+        {{ currentTask.complete ? "Finalizado" : "Em andamento" }}
       </div>
       <div class="btn-group mt-3" role="group">
+        <button type="button" class="btn btn-success" (click)="completeTask()">
+          Completar
+        </button>
         <button
           type="button"
           class="btn btn-dark"
