@@ -24,4 +24,8 @@ export class CrudService {
   update(id, data) {
     return this.http.put(baseUrl + id, data);
   }
+
+  delete(id) {
+    return this.http.delete(baseUrl + id);
+  }
 }

@@ -15,6 +15,11 @@ export class TaskListComponent implements OnInit {
   currentIndex = -1;
   title = "";
 
+  task = {
+    title: "",
+    description: "",
+  };
+
   ngOnInit() {
     this.retrieveTasks();
   }
@@ -45,4 +50,6 @@ export class TaskListComponent implements OnInit {
     this.currentTask = task;
     this.currentIndex = index;
   }
+
+  deleteTask(task) {}
 }
