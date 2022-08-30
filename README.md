@@ -2,6 +2,9 @@
 # Desafio Datacake - TodoApp com Django e Angular 8
 
 Projeto realizado para o teste de programação da Datacake, onde o objetivo era criar uma lista de tarefas utilizando Django e Django REST Framework no backend, e Angular 8 no frontend.
+
+Deploy: http://todo-app-angular-frontend.vercel.app/
+
 ## Funcionalidades
 
 - Criar uma nova tarefa
