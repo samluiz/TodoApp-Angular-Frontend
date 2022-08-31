@@ -23,7 +23,7 @@ Deploy: http://todo-app-angular-frontend.vercel.app/
 
 ## Stack utilizada
 
-**Front-end:** Javascript, Angular8, Bootstrap
+**Front-end:** Typescript, Angular8, Bootstrap
 
 **Back-end:** Python, Django, PostgreSQL
 
