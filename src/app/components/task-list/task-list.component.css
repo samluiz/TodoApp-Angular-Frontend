@@ -1,3 +1,7 @@
 .finished {
   border: 1px solid rgb(0, 255, 0);
 }
+
+.modal-title {
+  color: black !important;
+}
