@@ -13,20 +13,12 @@ Deploy: http://todo-app-angular-frontend.vercel.app/
 - Editar ou deletar uma tarefa específica
 - Marcar uma tarefa como finalizada
 
-## Features
+## Tecnologias
 
 - REST API Django no backend
 - Angular 8, Form Modules e HttpClient
 - Banco de dados Heroku Postgres / PostgreSQL
-- Design Responsivo com Bootstrap
-
-
-## Stack utilizada
-
-**Front-end:** Typescript, Angular8, Bootstrap
-
-**Back-end:** Python, Django, PostgreSQL
-
+- Design responsivo com Bootstrap
 
 ## Rodando localmente
 
