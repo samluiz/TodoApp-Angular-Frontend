@@ -5,3 +5,7 @@
 .modal-title {
   color: black !important;
 }
+
+li {
+  transition-duration: 0.2s;
+}
