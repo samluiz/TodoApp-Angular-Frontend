@@ -17,14 +17,15 @@ Deploy: http://todo-app-angular-frontend.vercel.app/
 
 - REST API Django no backend
 - Angular 8, Form Modules e HttpClient
+- Banco de dados Heroku Postgres / PostgreSQL
 - Design Responsivo com Bootstrap
 
 
 ## Stack utilizada
 
-**Front-end:** Angular8, Bootstrap
+**Front-end:** Javascript, Angular8, Bootstrap
 
-**Back-end:** Django
+**Back-end:** Python, Django, PostgreSQL
 
 
 ## Rodando localmente
